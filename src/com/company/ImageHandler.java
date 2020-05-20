@@ -9,29 +9,25 @@ import java.io.IOException;
 
 public class ImageHandler {
 
-    JFrame frame;
-    BufferedImage sourceImage;
-    String imagePath;
 
-    public ImageHandler(){
+    public static void saveImage(BufferedImage image, String name){
+        File file = new File(name);
+        try {
+            ImageIO.write(image, "png", file);
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+    }
+
+
+    public static BufferedImage loadImage(String imagePath) throws IOException{
+        return ImageIO.read(new File(imagePath));
 
     }
 
-    public ImageHandler(String imagePath) throws IOException {
-
-        this.imagePath = imagePath;
-        loadImage();
-        displayImage();
-
-    }
-
-    private void loadImage() throws IOException{
-        sourceImage = ImageIO.read(new File(imagePath));
-    }
-
-    public void displayImage() throws IOException{
-        ImageIcon icon = new ImageIcon(sourceImage);
-        frame = new JFrame("Obraz");
+    public static void displayImage(BufferedImage image, String nameFrame){
+        ImageIcon icon = new ImageIcon(image);
+        JFrame frame = new JFrame(nameFrame);
         JLabel label = new JLabel();
         label.setIcon(icon);
         frame.getContentPane().add(label, BorderLayout.CENTER);
@@ -39,15 +35,6 @@ public class ImageHandler {
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         frame.setVisible(true);
-    }
-
-    public void saveImage(BufferedImage image, String name){
-        File file = new File(name);
-        try {
-            ImageIO.write(image, "jpg", file);
-        } catch (IOException ioException) {
-            ioException.printStackTrace();
-        }
     }
 
 
