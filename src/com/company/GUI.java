@@ -108,6 +108,14 @@ public class GUI extends JFrame implements ActionListener {
             saveImage(imageAfterImfill, "po_imfill.png");
         }
 
+        if(buttonRegionprops.equals(source)){
+            try {
+                Regionprops regionprops = new Regionprops(sourceImage, "afterCentroid.txt");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+
 
     }
 
