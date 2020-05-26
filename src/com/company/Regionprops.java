@@ -27,11 +27,11 @@ public class Regionprops {
         File file = new File(this.fileName);
         FileWriter fw = new FileWriter(file);
         this.centroidsFile = new PrintWriter(fw);
-        centroid(image, centroidsFile);
+        centroidAndDiameterEquivalent(image, centroidsFile);
         centroidsFile.close();
     }
 
-    private void centroid(BufferedImage sourceImage, PrintWriter pw){
+    private void centroidAndDiameterEquivalent(BufferedImage sourceImage, PrintWriter pw){
         double[] colorsX = new double[256];
         double[] colorsY = new double[256];
         double[] centroids= new double[256];
@@ -58,6 +58,15 @@ public class Regionprops {
                 centroidsFile.println(centroidY);
             }
         }
+
+        centroidsFile.println(" EKWIWALENT ŚREDNICY:");
+        for (int i = 0; i<= 255; i++){
+            centroidsFile.print(i);
+            centroidsFile.print("  :  ");
+            double diameterEquivalent = 2 * Math.sqrt(centroids[i] / 3.14);
+            centroidsFile.println(diameterEquivalent);
+        }
+
     }
 
 

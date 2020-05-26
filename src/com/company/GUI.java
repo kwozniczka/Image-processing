@@ -103,9 +103,8 @@ public class GUI extends JFrame implements ActionListener {
         }
 
         if(buttonImfill.equals(source)){
-            Imfill imfill = new Imfill();
-            imageAfterImfill = imfill.imfill(sourceImage);
-            saveImage(imageAfterImfill, "po_imfill.png");
+            Imfill imfill = new Imfill(sourceImage);
+
         }
 
         if(buttonRegionprops.equals(source)){
