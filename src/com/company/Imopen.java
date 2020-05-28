@@ -1,8 +1,6 @@
 package com.company;
 
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-
 import static com.company.ImageHandler.saveImage;
 
 public class Imopen{
@@ -11,16 +9,13 @@ public class Imopen{
     BufferedImage image;
 
 
-
     public Imopen(int radius, BufferedImage image)  {
         this.radius = radius;
         this.image = image;
         opening();
-
     }
 
     // funkcja szukająca koloru o najniższych wartościach w skali szarosci w promieniu radius
-
     private int minimumColor( int x0, int y0, BufferedImage image) {
         int minimum = 255;
         for (int i = x0 - radius; i <= x0 + radius; i++)
@@ -77,9 +72,9 @@ public class Imopen{
                 afterDilatation.getRaster().setSample(l, k,0 ,maximumColor(k,l,img));
             }
         }
-
         return afterDilatation;
     }
+
 
     private void opening(){
         if(radius <= 0)
@@ -87,14 +82,6 @@ public class Imopen{
 
         BufferedImage picture = erosion(image);
         picture = dilatation(picture);
-        saveImage(picture, "po_otwarciu.png");
-
-//        BufferedImage afterOpening = dilatation(erosion());
-//        displayImage(afterOpening, "After Opening");
-//        saveImage(afterOpening, "po_otwarciu2.png");
-
-
+        saveImage(picture, "after_opening.png");
     }
-
-
 }

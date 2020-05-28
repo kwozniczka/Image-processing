@@ -38,7 +38,7 @@ public class OrdfiltDialog {
                 dialog.setVisible(false);
             }
         });
-        dialog.add(new JLabel("Confirm"));
+        dialog.add(new JLabel("Zastosuj"));
         dialog.add(button);
         dialog.setSize(300,300);
         dialog.setVisible(true);
@@ -61,4 +61,5 @@ public class OrdfiltDialog {
     public static int getNumber() {
         return number;
     }
+
 }

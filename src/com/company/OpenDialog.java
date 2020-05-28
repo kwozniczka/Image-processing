@@ -31,7 +31,7 @@ public class OpenDialog {
                 dialog.setVisible(false);
             }
         });
-        dialog.add(new JLabel("Confirm"));
+        dialog.add(new JLabel("Zastosuj"));
         dialog.add(button);
         dialog.setSize(300,300);
         dialog.setVisible(true);
@@ -44,11 +44,7 @@ public class OpenDialog {
         data=in1Field.getText();
         radius = Integer.parseInt(data);
         return radius;
-
-
     }
-
-
 
 }
 

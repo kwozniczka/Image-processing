@@ -1,6 +1,5 @@
 package com.company;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -22,16 +21,15 @@ public class GUI extends JFrame implements ActionListener {
     JButton buttonOrdfilt;
     Imopen imageAfterErode;
     Ordfilt imageAfterOrdfilt;
-    BufferedImage imageAfterImfill;
 
     public GUI() {
-        //setSize(1280,720);
+
         setSize(500, 500);
         setTitle("Aplikacja Obrazy");
         setLayout(null);
 
         buttonOpenFile = new JButton("Otwórz obraz");
-        buttonOpenFile.setBounds(50, 50, 400, 50); // nadanie parametrow przyciskowi
+        buttonOpenFile.setBounds(50, 50, 400, 50);
         add(buttonOpenFile);
         buttonOpenFile.addActionListener(this);
 
@@ -65,7 +63,6 @@ public class GUI extends JFrame implements ActionListener {
         if (buttonOpenFile.equals(source)) {
             JFileChooser fileChoose = new JFileChooser("/home/karolina/workspace/Image-processing");
 
-
             if (fileChoose.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
                 File file = fileChoose.getSelectedFile();
                 try {
@@ -81,42 +78,29 @@ public class GUI extends JFrame implements ActionListener {
 
 
         if (buttonImopen.equals(source)) {
-
             System.out.println("Otwarcie Obrazu");
             OpenDialog openDialog = new OpenDialog();
-            System.out.print("Promień elementu kołowego: ");
-            System.out.println(openDialog.getData());
-            imageAfterErode = new Imopen(OpenDialog.getData(), sourceImage);
-
+            imageAfterErode = new Imopen(openDialog.getData(), sourceImage);
         }
 
         if(buttonOrdfilt.equals(source)){
-
             System.out.println("Ordfilt");
             OrdfiltDialog ordfiltDialog = new OrdfiltDialog();
-            System.out.print("Rozmiar maski: ");
-            System.out.println(ordfiltDialog.getMasksize());
-            System.out.print("Numer porządkowy: ");
-            System.out.println(ordfiltDialog.getNumber());
-            imageAfterOrdfilt= new Ordfilt();
-
+            imageAfterOrdfilt= new Ordfilt(ordfiltDialog.getMasksize(), ordfiltDialog.getNumber(), sourceImage);
         }
 
         if(buttonImfill.equals(source)){
+            System.out.println("Imfill");
             Imfill imfill = new Imfill(sourceImage);
-
         }
 
         if(buttonRegionprops.equals(source)){
+            System.out.println("Regionprops");
             try {
-                Regionprops regionprops = new Regionprops(sourceImage, "afterCentroid.txt");
+                Regionprops regionprops = new Regionprops(sourceImage, "after_regionprops.txt");
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         }
-
-
     }
-
-
 }

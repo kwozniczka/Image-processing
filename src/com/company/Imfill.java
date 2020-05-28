@@ -5,7 +5,6 @@ import static com.company.ImageHandler.saveImage;
 
 public class Imfill {
 
-
     int radius; // promień koła (elementu strukturalnego)
     BufferedImage sourceImage; // obraz wejsciowy, ktory bedzie poddany rekonstrukcji
     BufferedImage tempImage; // pomocniczy obraz, gdzie przechowuje aktualne przekształcenia
@@ -14,7 +13,6 @@ public class Imfill {
         this.radius = 1;
         this.sourceImage = sourceImage;
         fillingImageHolesWithReconstruction();
-
     }
 
     private BufferedImage dilatation(BufferedImage img) {
@@ -120,7 +118,7 @@ public class Imfill {
             // nowa maska
             mask = tempImage;
         }
-        saveImage(imageNegation(mask), "afterImfill.png");
+        saveImage(imageNegation(mask), "after_imfill.png");
     }
 
 }

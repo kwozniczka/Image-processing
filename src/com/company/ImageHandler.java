@@ -9,7 +9,6 @@ import java.io.IOException;
 
 public class ImageHandler {
 
-
     public static void saveImage(BufferedImage image, String name){
         File file = new File(name);
         try {
@@ -22,7 +21,6 @@ public class ImageHandler {
 
     public static BufferedImage loadImage(String imagePath) throws IOException{
         return ImageIO.read(new File(imagePath));
-
     }
 
     public static void displayImage(BufferedImage image, String nameFrame){
@@ -36,7 +34,5 @@ public class ImageHandler {
         frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         frame.setVisible(true);
     }
-
-
 }
 
