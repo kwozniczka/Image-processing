@@ -108,7 +108,7 @@ public class Ordfilt {
 
                 afterOrdfilt.getRaster().setSample(kx,kz,0, newRed);
                 afterOrdfilt.getRaster().setSample(kx,kz,1, newGreen);
-                afterOrdfilt.getRaster().setSample(kx,kz,2,newBlue);
+                afterOrdfilt.getRaster().setSample(kx,kz,2, newBlue);
             }
         }
         return afterOrdfilt;

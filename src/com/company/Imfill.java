@@ -25,7 +25,7 @@ public class Imfill {
         return afterDilatation;
     }
 
-    // funkcja szukając koloru o najwyższych wartościach w skali szarosci w promieniu radius
+    // metoda szukająca koloru o najwyższych wartościach w skali szarosci w promieniu radius
     private int maximumColor(int x0, int y0, BufferedImage image) {
         int maximum = -1;
         for (int i = x0 - radius; i <= x0 + radius; i++)

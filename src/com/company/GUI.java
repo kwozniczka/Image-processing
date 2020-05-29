@@ -25,7 +25,7 @@ public class GUI extends JFrame implements ActionListener {
     public GUI() {
 
         setSize(500, 500);
-        setTitle("Aplikacja Obrazy");
+        setTitle("Aplikacja do przetwarzania obrazów");
         setLayout(null);
 
         buttonOpenFile = new JButton("Otwórz obraz");

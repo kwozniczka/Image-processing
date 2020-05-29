@@ -41,6 +41,7 @@ public class Regionprops {
             }
         }
 
+        centroidsFile.println("CENTROIDY :");
         for(int i = 0; i <= 255; i++){
             if(centroids[i] != 0) {// nie mogę podzielić jesli mam 0 elementow
                 centroidsFile.print(i);

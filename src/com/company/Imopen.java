@@ -6,16 +6,20 @@ import static com.company.ImageHandler.saveImage;
 public class Imopen{
 
     int radius; // promień koła (elementu strukturalnego)
-    BufferedImage image;
+    BufferedImage sourceImage;
 
 
-    public Imopen(int radius, BufferedImage image)  {
+    public Imopen(int radius, BufferedImage sourceImage)  {
         this.radius = radius;
-        this.image = image;
+        this.sourceImage = sourceImage;
         opening();
     }
 
-    // funkcja szukająca koloru o najniższych wartościach w skali szarosci w promieniu radius
+    private int checkImage(BufferedImage img) {
+        return img.getType();
+    }
+
+    // metoda szukająca koloru o najniższych wartościach w skali szarosci w promieniu radius
     private int minimumColor( int x0, int y0, BufferedImage image) {
         int minimum = 255;
         for (int i = x0 - radius; i <= x0 + radius; i++)
@@ -33,7 +37,7 @@ public class Imopen{
         return minimum;
     }
 
-    // funkcja szukając koloru o najwyższych wartościach w skali szarosci w promieniu radius
+    // metoda szukająca koloru o najwyższych wartościach w skali szarosci w promieniu radius
     private int maximumColor(int x0, int y0, BufferedImage image) {
         int maximum = -1;
         for (int i = x0 - radius; i <= x0 + radius; i++)
@@ -55,8 +59,8 @@ public class Imopen{
     private BufferedImage erosion(BufferedImage img){
         BufferedImage afterErode = new BufferedImage(img.getWidth(), img.getHeight(), img.getType());
 
-        for (int k = 0; k < (int) img.getHeight(); k++) {
-            for (int l = 0; l < (int) img.getWidth(); l++) {
+        for (int k = 0; k < img.getHeight(); k++) {
+            for (int l = 0; l < img.getWidth(); l++) {
                 afterErode.getRaster().setSample(l, k,0 ,minimumColor(k,l,img));
             }
         }
@@ -67,8 +71,8 @@ public class Imopen{
     private BufferedImage dilatation(BufferedImage img) {
         BufferedImage afterDilatation = new BufferedImage(img.getWidth(), img.getHeight(), img.getType());
 
-        for (int k = 0; k < (int) img.getHeight(); k++) {
-            for (int l = 0; l < (int) img.getWidth(); l++) {
+        for (int k = 0; k < img.getHeight(); k++) {
+            for (int l = 0; l < img.getWidth(); l++) {
                 afterDilatation.getRaster().setSample(l, k,0 ,maximumColor(k,l,img));
             }
         }
@@ -80,8 +84,12 @@ public class Imopen{
         if(radius <= 0)
             System.out.println("Radius must be > 0");
 
-        BufferedImage picture = erosion(image);
+        BufferedImage picture = erosion(sourceImage);
         picture = dilatation(picture);
-        saveImage(picture, "after_opening.png");
+
+        if(checkImage(sourceImage) == 10) // jesli jest mono
+            saveImage(picture, "after_openingMONO.png");
+        else // w przeciwnym razie jest logiczny
+            saveImage(picture, "after_openingLOG.png");
     }
 }
